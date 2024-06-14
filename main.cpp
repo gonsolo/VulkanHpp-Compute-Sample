@@ -136,8 +136,8 @@ int main()
 			}
 		}
 
-		std::cout << "Memory Type Index: " << MemoryTypeIndex << std::endl;
-		std::cout << "Memory Heap Size : " << MemoryHeapSize / 1024 / 1024 / 1024 << " GB" << std::endl;
+		//std::cout << "Memory Type Index: " << MemoryTypeIndex << std::endl;
+		//std::cout << "Memory Heap Size : " << MemoryHeapSize / 1024 / 1024 / 1024 << " GB" << std::endl;
 
 		vk::MemoryAllocateInfo InBufferMemoryAllocateInfo(InBufferMemoryRequirements.size, MemoryTypeIndex);
 		vk::MemoryAllocateInfo OutBufferMemoryAllocateInfo(OutBufferMemoryRequirements.size, MemoryTypeIndex);
@@ -240,6 +240,7 @@ int main()
 							 uint64_t(-1));		// Timeout
 
 #ifdef WITH_VMA
+                std::cout << "With VMA" << std::endl;
 		vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
 		for (uint32_t I = 0; I < NumElements; ++I)
 		{
@@ -318,6 +319,7 @@ int main()
 		DestroyBuffer(B3);
 		DestroyBuffer(B4);
 #else
+                std::cout << "Without VMA" << std::endl;
 		InBufferPtr = static_cast<int32_t*>(Device.mapMemory(InBufferMemory, 0, BufferSize));
 		for (uint32_t I = 0; I < NumElements; ++I)
 		{

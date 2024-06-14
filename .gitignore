@@ -33,3 +33,8 @@ out/
 *.exe
 *.out
 *.app
+
+# gonsolo
+/gonsolo
+/.cache
+/compile_commands.json
