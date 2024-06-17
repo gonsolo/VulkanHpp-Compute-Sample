@@ -108,8 +108,10 @@ int main()
 
 		int32_t* InBufferPtr = nullptr;
 		vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
+                std::cout << "Address of InBufferPtr: " << InBufferPtr << std::endl;
 		for (int32_t I = 0; I < NumElements; ++I)
 		{
+                        std::cout << "Setting input buffer element " << I << " to " << I << std::endl;
 			InBufferPtr[I] = I;
 		}
 		vmaUnmapMemory(Allocator, InBufferAllocation);
