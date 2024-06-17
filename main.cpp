@@ -244,6 +244,7 @@ int main()
 #ifdef WITH_VMA
                 std::cout << "With VMA" << std::endl;
 		vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
+                std::cout << "Address of InBufferPtr: " << InBufferPtr << std::endl;
 		for (uint32_t I = 0; I < NumElements; ++I)
 		{
 			std::cout << InBufferPtr[I] << " ";
