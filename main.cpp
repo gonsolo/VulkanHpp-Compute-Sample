@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 
@@ -107,7 +108,11 @@ int main()
 		vk::Buffer OutBuffer = OutBufferRaw;
 
 		int32_t* InBufferPtr = nullptr;
-		vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
+		auto mapResult = vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
+                if (mapResult != VK_SUCCESS) {
+                        std::cout << "vmaMapMemory failed!" << std::endl;
+                        return EXIT_FAILURE;
+                }
                 std::cout << "Address of InBufferPtr: " << InBufferPtr << std::endl;
 		for (int32_t I = 0; I < NumElements; ++I)
 		{
