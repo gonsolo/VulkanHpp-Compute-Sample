@@ -107,8 +107,9 @@ int main()
 		vk::Buffer InBuffer = InBufferRaw;
 		vk::Buffer OutBuffer = OutBufferRaw;
 
-		int32_t* InBufferPtr = nullptr;
-		auto mapResult = vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
+                int32_t* InBufferPtr = nullptr;
+                printf("allocation size: %li\n", InBufferAllocation->GetSize());
+                auto mapResult = vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
                 if (mapResult != VK_SUCCESS) {
                         std::cout << "vmaMapMemory failed!" << std::endl;
                         return EXIT_FAILURE;
