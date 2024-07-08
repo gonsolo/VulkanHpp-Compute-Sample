@@ -251,6 +251,7 @@ int main()
                 std::cout << "With VMA" << std::endl;
 		vmaMapMemory(Allocator, InBufferAllocation, reinterpret_cast<void**>(&InBufferPtr));
                 std::cout << "Address of InBufferPtr: " << InBufferPtr << std::endl;
+                std::cout << "Input elements: ";
 		for (uint32_t I = 0; I < NumElements; ++I)
 		{
 			std::cout << InBufferPtr[I] << " ";
@@ -260,6 +261,7 @@ int main()
 
 		int32_t* OutBufferPtr = nullptr;
 		vmaMapMemory(Allocator, OutBufferAllocation, reinterpret_cast<void**>(&OutBufferPtr));
+                std::cout << "Output elements: ";
 		for (uint32_t I = 0; I < NumElements; ++I)
 		{
 			std::cout << OutBufferPtr[I] << " ";
