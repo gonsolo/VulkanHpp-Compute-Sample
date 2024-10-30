@@ -56,7 +56,7 @@ int main()
 		vk::DeviceCreateInfo DeviceCreateInfo(vk::DeviceCreateFlags(), // Flags
 											  DeviceQueueCreateInfo);  // Device Queue Create Info struct
 		vk::Device Device = PhysicalDevice.createDevice(DeviceCreateInfo);
-
+#if 0
 		const uint32_t NumElements = 10;
 		const uint32_t BufferSize = NumElements * sizeof(int32_t);
 
@@ -155,6 +155,7 @@ int main()
 		Device.bindBufferMemory(OutBuffer, OutBufferMemory, 0);
 #endif
 
+#endif
 		std::vector<char> ShaderContents;
 		if (std::ifstream ShaderFile{ "Square.spv", std::ios::binary | std::ios::ate })
 		{
@@ -168,7 +169,6 @@ int main()
 														  ShaderContents.size(),										// Code size
 														  reinterpret_cast<const uint32_t*>(ShaderContents.data()));	// Code
 		vk::ShaderModule ShaderModule = Device.createShaderModule(ShaderModuleCreateInfo);
-
 		const std::vector<vk::DescriptorSetLayoutBinding> DescriptorSetLayoutBinding = {
 			{0, vk::DescriptorType::eStorageBuffer, 1, vk::ShaderStageFlagBits::eCompute},
 			{1, vk::DescriptorType::eStorageBuffer, 1, vk::ShaderStageFlagBits::eCompute}
@@ -189,6 +189,7 @@ int main()
 																PipelineShaderCreateInfo,	// Shader Create Info struct
 																PipelineLayout);			// Pipeline Layout
 		vk::Pipeline ComputePipeline = Device.createComputePipeline(PipelineCache, ComputePipelineCreateInfo).value;
+#if 0
 
 		vk::DescriptorPoolSize DescriptorPoolSize(vk::DescriptorType::eStorageBuffer, 2);
 		vk::DescriptorPoolCreateInfo DescriptorPoolCreateInfo(vk::DescriptorPoolCreateFlags(), 1, DescriptorPoolSize);
@@ -366,6 +367,7 @@ int main()
 		Device.destroyCommandPool(CommandPool);
 		Device.destroy();
 		Instance.destroy();
+#endif
 	}
 	catch (const std::exception& Exception)
 	{
